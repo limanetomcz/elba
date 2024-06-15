@@ -1,0 +1,10 @@
+###
+post http://localhost/api/payments
+Content-Type: application/json
+
+{
+    "amount": 100.50,
+    "payment_method": "pix",
+    "buyer_document": "12345678901",
+    "product_id": "ABC123"
+}
