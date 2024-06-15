@@ -2,9 +2,9 @@
 
 namespace App\Services\Payments;
 
-use App\Services\Contracts\Payments\BoletoProcessorPaymentService;
-use App\Services\Contracts\Payments\CreditCardProcessorPaymentService;
-use App\Services\Contracts\Payments\PixProcessorPaymentService;
+use App\Services\Payments\BoletoProcessorPaymentService;
+use App\Services\Payments\CreditCardProcessorPaymentService;
+use App\Services\Payments\PixProcessorPaymentService;
 use App\Services\Payments\Contracts\PaymentProcessorInterface;
 use InvalidArgumentException;
 
