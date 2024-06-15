@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Http\Controllers\PaymentController;
 use App\Models\Payment;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,17 +14,29 @@ class ProcessPayment implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $payment;
+    protected $validatedData;
 
-    
-    public function __construct(Payment $payment)
+
+    /**
+     * Create a new job instance.
+     *
+     * @param  array  $validatedData
+     * @return void
+     */
+    public function __construct(array $validatedData)
     {
-        $this->payment = $payment;
+        $this->validatedData = $validatedData;
     }
 
-    
-    public function handle(): void
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
     {
-        $this->payment->update(['status' => 'completed']);
+        $controller = new PaymentController();
+        $controller->processPayment($this->validatedData);
     }
 }
