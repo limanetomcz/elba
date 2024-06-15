@@ -2,20 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PaymentPostRequest;
 use App\Jobs\ProcessPayment;
 use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function store(Request $request)
+   
+    public function store(PaymentPostRequest $request)
     {
-        $validated = $request->validate([
-            'amount' => 'required|numeric',
-            'payment_method' => 'required|string|in:boleto,pix,credit_card',
-            'buyer_document' => 'required|string|max:11',
-            'product_id' => 'required|string',
-        ]);
+        $validated = $request->validated();
         
         $payment = Payment::create($validated);
 
