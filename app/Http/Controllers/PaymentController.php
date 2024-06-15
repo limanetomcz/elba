@@ -20,7 +20,6 @@ class PaymentController extends Controller
     {
         $validated = $request->validated();
         ProcessPaymentJob::dispatch($validated, $this->paymentService);
-        //$this->paymentService->processPayment($validated);
         return response()->json([
             "status" => "processing",
             "message" => "Payment request received and is being processed.",            
